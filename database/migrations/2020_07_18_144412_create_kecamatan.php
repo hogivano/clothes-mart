@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersBiodata extends Migration
+class CreateKecamatan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateUsersBiodata extends Migration
      */
     public function up()
     {
-        Schema::create('users_biodata', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::create('kecamatan', function (Blueprint $table) {
+            $table->bigIncrements('id')->primary();
+            $table->unsignedBigInteger('city_id');
+            $table->char('name', 100);
         });
     }
 
@@ -26,6 +27,6 @@ class CreateUsersBiodata extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_biodata');
+        Schema::dropIfExists('kecamatan');
     }
 }

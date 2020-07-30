@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductVoucher extends Migration
+class CreateProductDetailAdditionalPrice extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateProductVoucher extends Migration
      */
     public function up()
     {
-        Schema::create('product_voucher', function (Blueprint $table) {
+        Schema::create('product_detail_additional_price', function (Blueprint $table) {
             $table->bigIncrements('id')->primary();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('voucher_id');
+            $table->unsignedBigInteger('product_detail_id');
+            $table->char('price', 12);
             $table->dateTime('start_date');
-            $table->dateTime('expired_date');
+            $table->dateTime('expired_date')->nullable();
             $table->enum('status', ['pending', 'active', 'hold', 'expired']);
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 
@@ -31,6 +32,6 @@ class CreateProductVoucher extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_voucher');
+        Schema::dropIfExists('product_detail_additional_price');
     }
 }

@@ -14,7 +14,14 @@ class CreateProductWholesale extends Migration
     public function up()
     {
         Schema::create('product_wholesale', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
+            $table->char('title', 100);
+            $table->integer('quantity')->default(0);
+            $table->boolean('support_voucher')->default(false);
+            $table->char('price', 12);
+            $table->dateTime('start_date', 0);
+            $table->dateTime('expired_date', 0);
+            $table->enum('status', ['pending', 'active', 'hold', 'expired']);
             $table->timestamps();
         });
     }

@@ -14,7 +14,11 @@ class CreateProductBrand extends Migration
     public function up()
     {
         Schema::create('product_brand', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
+            $table->char('name', 100);
+            $table->text('picture')->nullable();
+            $table->text('thumbnail_m')->nullable();
+            $table->text('thumbnail_s')->nullable();
             $table->timestamps();
         });
     }

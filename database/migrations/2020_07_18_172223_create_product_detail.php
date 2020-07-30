@@ -14,8 +14,13 @@ class CreateProductDetail extends Migration
     public function up()
     {
         Schema::create('product_detail', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_color_id');
+            $table->unsignedBigInteger('product_size_id');
+            $table->integer('total_stock');
             $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
         });
     }
 

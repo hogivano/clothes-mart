@@ -14,8 +14,9 @@ class CreateProductSize extends Migration
     public function up()
     {
         Schema::create('product_size', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->primary();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('list_color_id');
         });
     }
 
